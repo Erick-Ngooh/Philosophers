@@ -1,0 +1,12 @@
+
+philo 1 2 - 3 4 - 5 6  - 7 
+
+must_eat = nombre_de_philo / 2
+
+sem_wait(must_eat)
+
+sem_wait(fork)
+
+sem_post(fork)
+
+sem_post(must_eat)
