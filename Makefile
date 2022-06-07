@@ -6,13 +6,13 @@
 #    By: engooh <engooh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 11:25:28 by engooh            #+#    #+#              #
-#    Updated: 2022/06/07 11:25:42 by engooh           ###   ########.fr        #
+#    Updated: 2022/06/07 12:34:17 by engooh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = src/main.c src/routine.c src/init.c src/destroy.c src/join.c src/status.c
 OBJ = ${SRC:%.c=%.o}
-SRC_BONUS = src_bonus/main_bonus.c src_bonus/init_bonus.c src_bonus/routine_bonus.c src_bonus/exit_bonus.c src_bonus/utils_bonus.c
+SRC_BONUS = src_bonus/main_bonus.c src_bonus/init_bonus.c src_bonus/routine_bonus.c src_bonus/exit_bonus.c src_bonus/utils_bonus.c src_bonus/wait_bonus.c
 OBJ_BONUS = ${SRC_BONUS:%.c=%.o}
 CFLAG = -g3 -pthread -Wall -Wextra -Werror
 

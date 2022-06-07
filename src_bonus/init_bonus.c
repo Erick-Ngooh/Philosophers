@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:26:41 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/07 11:35:48 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/07 12:48:47 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -35,6 +35,7 @@ int	set_data(t_philo *philo, char **av)
 {
 	philo->dead = 1;
 	philo->pid = NULL;
+	philo->eat_n = 0;
 	philo->nbp_std = ft_atoi(av[1]);
 	philo->ttd_std = ft_atoi(av[2]);
 	philo->tte_std = ft_atoi(av[3]);
@@ -67,7 +68,6 @@ void	create_semaphore_process(t_philo *philo, int i)
 			exit_philo(philo, 1);
 		if (!philo->pid[i])
 			routine(philo, i);
-		usleep(1000);
 	}
 }
 
