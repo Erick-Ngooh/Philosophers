@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:08:19 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/07 16:52:02 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:56:54 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -27,8 +27,8 @@ void	status_eat(t_philo *philo)
 
 void	status_sleep_and_think(t_philo *philo)
 {
-	usleep(philo->tte_std);
 	print_philo(philo, "is sleeping\n");
+	ft_usleep(philo->tts_std);
 	print_philo(philo, "is thinking\n");
 }
 
