@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 10:26:41 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/07 17:39:06 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 00:54:12 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -68,7 +68,7 @@ void	create_semaphore_process(t_philo *philo, int i)
 			exit_philo(philo, 1);
 		if (!philo->pid[i])
 			routine(philo, i);
-		ft_usleep(1);
+		usleep(1000);
 	}
 }
 

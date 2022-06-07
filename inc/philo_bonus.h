@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:59:28 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/07 12:38:08 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 00:59:34 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_philo
 }	t_philo;
 
 int		timestamp(void);
-int		wait_philo(t_philo *philo);
+int		wait_philo(t_philo *philo, int i);
 void	ft_usleep(ssize_t time);
 void	routine(t_philo *philo, int index);
 void	print_philo(t_philo *philo, char *str);
