@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 11:08:19 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/07 12:48:19 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/07 16:52:02 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -34,6 +34,8 @@ void	status_sleep_and_think(t_philo *philo)
 
 void	routine(t_philo *philo, int index)
 {
+	if (index % 2 == 1)
+		usleep(philo->tte_std * 1000);
 	philo->genese = timestamp();
 	philo->eating = philo->genese;
 	philo->index = index;
