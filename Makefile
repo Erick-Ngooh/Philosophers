@@ -6,7 +6,7 @@
 #    By: engooh <engooh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 11:25:28 by engooh            #+#    #+#              #
-#    Updated: 2022/06/08 14:00:17 by engooh           ###   ########.fr        #
+#    Updated: 2022/06/08 22:42:17 by engooh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ bonus: $(OBJ_BONUS)
 
 fb: $(OBJ_BONUS)
 	gcc -fsanitize=address $(CFLAG) $(OBJ_BONUS) -o philo share/libft/libft.a
+
+bb: $(OBJ_BONUS)
+	gcc -fsanitize=thread $(CFLAG) $(OBJ_BONUS) -o philo share/libft/libft.a
 
 %.o: %.c
 	cd share/libft/ && make && cd ../../

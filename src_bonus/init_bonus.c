@@ -6,13 +6,14 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:21:52 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 22:15:18 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 22:33:33 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
 
 int	set_philo(t_philo *philo, char **av)
 {
+	philo->genese = 0;
 	philo->eat_count = 0;
 	philo->philo_number = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);
