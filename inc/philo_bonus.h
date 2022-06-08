@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:59:28 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 00:59:34 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 12:29:30 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,32 @@
 typedef struct s_philo
 {
 	pthread_t	death;
-	sem_t		*forks;
+	sem_t		*stop;
+	sem_t		*dead;
+	sem_t		*fork;
 	sem_t		*print;
-	long int	index;
-	long int	eat_n;
 	long int	genese;
-	long int	eating;
-	long int	tte_std;
-	long int	tts_std;	
-	long int	ttd_std;
-	long int	nbp_std;
-	long int	ect_std;
+	long int	time_to_eat;
+	long int	time_to_die;
+	long int	time_to_sleep;
+	long int	last_meal;
 	int			*pid;
-	int			dead;
-	int			ect_if;
+	int			index;
+	int			is_dead;
+	int			is_count;
+	int			eat_count;
+	int			philo_number;
 }	t_philo;
 
+int		parse(int ac, char **av);
 int		timestamp(void);
 int		wait_philo(t_philo *philo, int i);
+int		set_philo(t_philo *philo, char **av);
+int		create_semaphore(t_philo *philo);
+int		kill_process(t_philo *philo, int i);
 void	ft_usleep(ssize_t time);
+void	open_philo(t_philo *philo, int i);
 void	routine(t_philo *philo, int index);
-void	print_philo(t_philo *philo, char *str);
-
+void	print_philo(t_philo *philo, char *str, int check_dead);
 void	exit_philo(t_philo *philo, int exit_value);
-void	open_philo(t_philo *philo, int ac, char **av);
 #endif 

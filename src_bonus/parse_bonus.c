@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_bonus.c                                       :+:      :+:    :+:   */
+/*   parse_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/07 12:30:26 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 00:44:23 by engooh           ###   ########.fr       */
+/*   Created: 2022/06/08 11:19:06 by engooh            #+#    #+#             */
+/*   Updated: 2022/06/08 11:20:53 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
 
-int	wait_philo(t_philo *philo, int i)
+int	parse(int ac, char **av)
 {
-	int	status;
+	int	i;
 
-	while (waitpid(-1, &status, 0) > 0)
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
-	i = -1;
-	while (++i < philo->nbp_std)
-		kill(philo->pid[i], SIGTERM);
-	return (1);
+	if (!(ac == 5 || ac == 6))
+		return (printf("Error: invalide number argument\n"));
+	av = av + 1;
+	while (*av)
+	{
+		if (ft_atoi(*av) == -1)
+			return (printf("Error: invalide argument\n"));
+		i = -1;
+		while (av[0][++i])
+			if (!ft_isdigit(av[0][i]))
+				return (printf("Error: invalide argument\n"));
+		av++;
+	}
+	return (0);
 }
