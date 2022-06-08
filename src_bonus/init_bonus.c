@@ -6,13 +6,14 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:21:52 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 12:24:45 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 22:15:18 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
 
 int	set_philo(t_philo *philo, char **av)
 {
+	philo->eat_count = 0;
 	philo->philo_number = ft_atoi(av[1]);
 	philo->time_to_die = ft_atoi(av[2]);
 	philo->time_to_eat = ft_atoi(av[3]);
@@ -39,9 +40,9 @@ int	set_philo(t_philo *philo, char **av)
 int	create_semaphore(t_philo *philo)
 {
 	philo->dead = sem_open("/dead", O_CREAT, 0644, 1);
-	philo->fork = sem_open("/fork", O_CREAT, 0644, 1);
+	philo->print = sem_open("/print", O_CREAT, 0644, 1);
 	philo->stop = sem_open("/stop", O_CREAT, 0644, 1);
-	philo->print = sem_open("/print", O_CREAT, 0644, philo->philo_number);
+	philo->fork = sem_open("/fork", O_CREAT, 0644, philo->philo_number);
 	if (philo->dead == SEM_FAILED || philo->fork == SEM_FAILED
 		|| philo->stop == SEM_FAILED || philo->print == SEM_FAILED)
 		return (0);

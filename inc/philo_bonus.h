@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:59:28 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 12:29:30 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/08 13:59:32 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	open_philo(t_philo *philo, int i);
 void	routine(t_philo *philo, int index);
 void	print_philo(t_philo *philo, char *str, int check_dead);
 void	exit_philo(t_philo *philo, int exit_value);
+void	status_eat(t_philo *philo);
+void	status_sleep_think(t_philo *philo);
 #endif 
