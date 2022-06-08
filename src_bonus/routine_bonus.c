@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:54:12 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 00:02:26 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 01:44:26 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -20,13 +20,14 @@ void	*thread_check_death(void *arg)
 		usleep(1);
 	while (42)
 	{
-		sem_wait(philo->dead);
 		if (timestamp() - philo->last_meal >= philo->time_to_die)
 		{
+			sem_wait(philo->dead);
+			philo->is_dead = 0;
+			sem_post(philo->dead);
 			print_philo(philo, "is died\n", 0);
-			exit(0);
+			break ;
 		}
-		sem_post(philo->dead);
 	}
 	return (NULL);
 }
@@ -44,4 +45,5 @@ void	routine(t_philo *philo, int index)
 	status_sleep_think(philo);
 	if (pthread_join(philo->death, NULL))
 		exit(1);
+	exit(0);
 }
