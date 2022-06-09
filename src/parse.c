@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_bonus.c                                       :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 11:51:03 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 15:04:00 by engooh           ###   ########.fr       */
+/*   Created: 2022/06/09 15:12:11 by engooh            #+#    #+#             */
+/*   Updated: 2022/06/09 15:12:33 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/philo_bonus.h"
+#include "../inc/philo.h"
 
-void	open_philo(t_philo *philo, int i)
+int	parse(int ac, char **av)
 {
-	while (++i < philo->philo_number)
+	int	i;
+
+	if (!(ac == 5 || ac == 6))
+		return (printf("Error: invalide number argument\n"));
+	av = av + 1;
+	while (*av)
 	{
-		philo->pid[i] = fork();
-		if (philo->pid[i] == -1)
-			exit_philo(philo, 1);
-		if (!philo->pid[i])
-			routine(philo, i);
+		if (ft_atoi(*av) == -1)
+			return (printf("Error: invalide argument\n"));
+		i = -1;
+		while (av[0][++i])
+			if (!ft_isdigit(av[0][i]))
+				return (printf("Error: invalide argument\n"));
+		av++;
 	}
+	return (0);
 }

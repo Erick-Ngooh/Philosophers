@@ -6,11 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:54:12 by engooh            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/06/09 02:34:20 by engooh           ###   ########.fr       */
-=======
-/*   Updated: 2022/06/09 01:44:26 by engooh           ###   ########.fr       */
->>>>>>> parent of 61440fa (philo_bonus: c'est la fin, encore un peu de force avant la boucle)
+/*   Updated: 2022/06/09 13:25:27 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -24,7 +20,8 @@ void	*thread_check_death(void *arg)
 		usleep(1);
 	while (42)
 	{
-		if (timestamp() - philo->last_meal >= philo->time_to_die)
+		if ((timestamp() - philo->last_meal >= philo->time_to_die)
+			|| (philo->is_count && philo->eat_count <= 0))
 		{
 			sem_wait(philo->dead);
 			philo->is_dead = 0;
@@ -45,8 +42,11 @@ void	routine(t_philo *philo, int index)
 	philo->index = index;
 	philo->genese = timestamp();
 	philo->last_meal = philo->genese;
-	status_eat(philo);
-	status_sleep_think(philo);
+	while (42)
+	{
+		status_eat(philo);
+		status_sleep_think(philo);
+	}
 	if (pthread_join(philo->death, NULL))
 		exit(1);
 	exit(0);

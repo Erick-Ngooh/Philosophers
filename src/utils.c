@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_bonus.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/08 11:58:23 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 16:37:35 by engooh           ###   ########.fr       */
+/*   Created: 2022/06/09 15:08:40 by engooh            #+#    #+#             */
+/*   Updated: 2022/06/09 15:43:14 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../inc/philo_bonus.h"
+#include "../inc/philo.h"
+
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}
 
 int	ft_isdigit(int c)
 {
@@ -18,40 +23,44 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	timestamp(void)
+void	ft_putnbr_fd(int n, int fd)
 {
-	struct timeval	time;
+	long	m;
 
-	gettimeofday(&time, NULL);
-	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-void	ft_usleep(ssize_t time)
-{
-	ssize_t	res;
-	double	wt;
-
-	wt = time / 10;
-	res = timestamp() + time;
-	while (timestamp() < res)
+	m = n;
+	if (m < 0)
 	{
-		if (time > 1000)
-			usleep(100);
-		else
-			usleep(wt);
+		m = -m;
+		ft_putchar_fd('-', fd);
 	}
+	if (m > 9)
+	{
+		ft_putnbr_fd((m / 10), fd);
+		ft_putchar_fd((m % 10) + '0', fd);
+	}
+	if (m >= 0 && m <= 9)
+		ft_putchar_fd(m + '0', fd);
 }
 
-void	print_philo(t_philo *philo, char *str, int check_death)
-{	
-	sem_wait(philo->dead);
-	if (check_death && !philo->is_dead)
-		exit(0);
-	sem_post(philo->dead);
-	sem_wait(philo->print);
-	printf("{%ld} {%d} %s", timestamp() - philo->genese, philo->index, str);
-	if (check_death)
-		sem_post(philo->print);
+int	print_philo(t_data *data, t_philo *philo, char *str, int size)
+{
+	pthread_mutex_lock(&data->print);
+	if (!check_death(data, 1) && size != 5)
+	{
+		pthread_mutex_unlock(&data->print);
+		return (0);
+	}
+	write(1, "[", 1);
+	ft_putnbr_fd(timestamp() - philo->genese, 1);
+	write(1, "]", 1);
+	write(1, " ", 1);
+	write(1, "[", 1);
+	ft_putnbr_fd(philo->idx, 1);
+	write(1, "]", 1);
+	write(1, " ", 1);
+	write(1, str, size);
+	pthread_mutex_unlock(&data->print);
+	return (0);
 }
 
 int	ft_atoi(const char *nptr)

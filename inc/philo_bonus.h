@@ -6,25 +6,26 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:59:28 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/08 13:59:32 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 16:38:02 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
+# include <limits.h>
 # include <pthread.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>           /* For O_* constants */
 # include <string.h>
 # include <signal.h>
+# include <unistd.h>
 # include <sys/wait.h>
 # include <sys/stat.h>        /* For mode constants */
 # include <sys/types.h>
 # include <sys/time.h>
 # include <semaphore.h>
-# include "../share/libft/libft.h"
 
 typedef struct s_philo
 {
@@ -46,6 +47,8 @@ typedef struct s_philo
 	int			philo_number;
 }	t_philo;
 
+int		ft_isdigit(int c);
+int		ft_atoi(const char *nptr);
 int		parse(int ac, char **av);
 int		timestamp(void);
 int		wait_philo(t_philo *philo, int i);

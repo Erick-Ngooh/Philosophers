@@ -6,31 +6,10 @@
 /*   By: christellenkouka <christellenkouka@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 18:45:47 by christellen       #+#    #+#             */
-/*   Updated: 2022/06/06 18:38:06 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 15:56:55 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../inc/philo.h"
-
-int	parse(int ac, char **av)
-{
-	int	i;
-
-	if (!(ac == 5 || ac == 6))
-		return (printf("Error: invalide number argument\n"));
-	av = av + 1;
-	while (*av)
-	{
-		if (ft_atoi(*av) == -1)
-			return (printf("Error: invalide argument\n"));
-		i = -1;
-		while (av[0][++i])
-			if (!ft_isdigit(av[0][i]))
-				return (printf("Error: invalide argument\n"));
-		av++;
-	}
-	return (0);
-}
 
 int	set_data(t_data *data, char **av)
 {
