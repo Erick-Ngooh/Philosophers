@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:54:12 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 13:25:27 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:55:33 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -39,7 +39,7 @@ void	routine(t_philo *philo, int index)
 		exit(1);
 	if (index % 2 == 1)
 		usleep(philo->time_to_die * 1000);
-	philo->index = index;
+	philo->index = index + 1;
 	philo->genese = timestamp();
 	philo->last_meal = philo->genese;
 	while (42)

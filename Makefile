@@ -6,7 +6,7 @@
 #    By: engooh <engooh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 11:25:28 by engooh            #+#    #+#              #
-#    Updated: 2022/06/09 16:33:04 by engooh           ###   ########.fr        #
+#    Updated: 2022/06/09 17:56:50 by engooh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,22 +19,22 @@ CFLAG = -g3 -pthread -Wall -Wextra -Werror
 all: philo
 
 philo: $(OBJ)
-	gcc $(CFLAG) $(OBJ) -o $@  share/libft/libft.a
+	gcc $(CFLAG) $(OBJ) -o $@  
 
 fsanthread: $(OBJ)
-	gcc -fsanitize=thread $(CFLAG) $(OBJ) -o philo share/libft/libft.a
+	gcc -fsanitize=thread $(CFLAG) $(OBJ) -o philo 
 
 fsanadress: $(OBJ)
-	gcc -fsanitize=address $(CFLAG) $(OBJ) -o philo share/libft/libft.a
+	gcc -fsanitize=address $(CFLAG) $(OBJ) -o philo 
 
 bonus: $(OBJ_BONUS)
-	gcc $(CFLAG) $(OBJ_BONUS) -o philo share/libft/libft.a
+	gcc $(CFLAG) $(OBJ_BONUS) -o philo 
 
 fsanbonusthread: $(OBJ_BONUS)
-	gcc -fsanitize=address $(CFLAG) $(OBJ_BONUS) -o philo share/libft/libft.a
+	gcc -fsanitize=address $(CFLAG) $(OBJ_BONUS) -o philo 
 
 fsanbonusadress: $(OBJ_BONUS)
-	gcc -fsanitize=thread $(CFLAG) $(OBJ_BONUS) -o philo share/libft/libft.a
+	gcc -fsanitize=thread $(CFLAG) $(OBJ_BONUS) -o philo 
 
 %.o: %.c
 	gcc $(CFLAG) -c $^ -o $@ 

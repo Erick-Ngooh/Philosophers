@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:08:40 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 15:43:14 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:57:46 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
@@ -55,7 +55,7 @@ int	print_philo(t_data *data, t_philo *philo, char *str, int size)
 	write(1, "]", 1);
 	write(1, " ", 1);
 	write(1, "[", 1);
-	ft_putnbr_fd(philo->idx, 1);
+	ft_putnbr_fd(philo->idx + 1, 1);
 	write(1, "]", 1);
 	write(1, " ", 1);
 	write(1, str, size);
