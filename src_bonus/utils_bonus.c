@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:58:23 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 01:08:36 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/09 02:26:49 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -43,5 +43,6 @@ void	print_philo(t_philo *philo, char *str, int check_death)
 	sem_post(philo->dead);
 	sem_wait(philo->print);
 	printf("{%ld} {%d} %s", timestamp() - philo->genese, philo->index, str);
-	sem_post(philo->print);
+	if (check_death)
+		sem_post(philo->print);
 }
