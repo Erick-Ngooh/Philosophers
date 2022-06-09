@@ -6,7 +6,11 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:52:55 by engooh            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/06/09 03:06:32 by engooh           ###   ########.fr       */
+=======
+/*   Updated: 2022/06/08 23:16:16 by engooh           ###   ########.fr       */
+>>>>>>> parent of 61440fa (philo_bonus: c'est la fin, encore un peu de force avant la boucle)
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
