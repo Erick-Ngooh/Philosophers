@@ -6,7 +6,7 @@
 /*   By: christellenkouka <christellenkouka@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 16:20:59 by christellen       #+#    #+#             */
-/*   Updated: 2022/06/09 16:12:00 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/13 23:03:12 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
@@ -18,10 +18,10 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	data = philo->data;
-	if (philo->idx % 2 == 0)
-		usleep(100);
 	philo->genese = timestamp();
 	philo->tte = philo->genese;
+	if (philo->idx % 2 == 0)
+		ft_usleep(philo->tte_s / 10, data);
 	while (check_death(data, 1))
 	{
 		status_eat(data, philo);

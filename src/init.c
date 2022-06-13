@@ -6,7 +6,7 @@
 /*   By: christellenkouka <christellenkouka@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 18:45:47 by christellen       #+#    #+#             */
-/*   Updated: 2022/06/09 15:56:55 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/13 23:04:27 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
@@ -47,6 +47,7 @@ int	create_mutex(t_data *data, int i)
 		data->philo[i].genese = 0;
 		data->philo[i].data = data;
 		data->philo[i].tte_s = data->tte_std;
+		data->philo[i].tts_s = data->tts_std;
 		data->philo[i].nbp_s = data->nbp_std;
 		if (i == data->nbp_std - 1)
 			data->philo[i].next = &data->philo[0];
@@ -60,14 +61,13 @@ int	create_mutex(t_data *data, int i)
 	return (1);
 }
 
-int	create_thread(t_data *data, int is_paire, int i)
+int	create_thread(t_data *data, int i)
 {
 	while (++i < data->nbp_std)
 	{
-		if (i % 2 == is_paire)
-			if (pthread_create(&data->philo[i].thrid, NULL,
-					routine, &data->philo[i]) < 0)
-				return (0);
+		if (pthread_create(&data->philo[i].thrid, NULL,
+				routine, &data->philo[i]) < 0)
+			return (0);
 	}
 	return (1);
 }
@@ -82,9 +82,7 @@ int	init_philo(t_data *data, int ac, char **av)
 	if (!philo)
 		return (0);
 	data->philo = philo;
-	if (!create_mutex(data, -1))
-		return (0);
-	if (!create_thread(data, 1, -1) || !create_thread(data, 0, -1))
+	if (!create_mutex(data, -1) || !create_thread(data, -1))
 		return (0);
 	return (1);
 }

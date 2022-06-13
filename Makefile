@@ -6,7 +6,7 @@
 #    By: engooh <engooh@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/07 11:25:28 by engooh            #+#    #+#              #
-#    Updated: 2022/06/09 17:56:50 by engooh           ###   ########.fr        #
+#    Updated: 2022/06/13 21:28:46 by engooh           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,13 @@ fsanbonusadress: $(OBJ_BONUS)
 %.o: %.c
 	gcc $(CFLAG) -c $^ -o $@ 
 
+cleanbonus:	
+	rm src_bonus/*.o
+
 clean: 
 	rm src/*.o
+
+fleanbonus:
 	rm src_bonus/*.o
 
 fclean: clean 

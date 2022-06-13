@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:21:52 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 13:17:19 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/13 21:09:40 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -41,6 +41,10 @@ int	set_philo(t_philo *philo, char **av)
 
 int	create_semaphore(t_philo *philo)
 {
+	sem_unlink("/dead");
+	sem_unlink("/fork");
+	sem_unlink("/stop");
+	sem_unlink("/print");
 	philo->dead = sem_open("/dead", O_CREAT, 0644, 1);
 	philo->print = sem_open("/print", O_CREAT, 0644, 1);
 	philo->stop = sem_open("/stop", O_CREAT, 0644, 1);

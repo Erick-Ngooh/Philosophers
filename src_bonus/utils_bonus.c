@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 11:58:23 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 16:37:35 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/13 21:08:06 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo_bonus.h"
@@ -52,6 +52,8 @@ void	print_philo(t_philo *philo, char *str, int check_death)
 	printf("{%ld} {%d} %s", timestamp() - philo->genese, philo->index, str);
 	if (check_death)
 		sem_post(philo->print);
+	else
+		exit(0);
 }
 
 int	ft_atoi(const char *nptr)

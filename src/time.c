@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:40:01 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 15:41:21 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/13 22:58:59 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
@@ -21,17 +21,19 @@ long int	timestamp(void)
 
 void	ft_usleep(ssize_t time, t_data *data)
 {
+	long int	current;
 	ssize_t		res;
-	double		wt;
 
-	wt = time / 10;
-	res = timestamp() + time;
-	while (timestamp() < res)
+	res = timestamp();
+	while (1)
 	{
-		if (time > 1000)
+		current = timestamp() - res;
+		if (current >= time)
+			break ;
+		if (time - current >= 1000)
 			usleep(100);
 		else
-			usleep(wt);
+			usleep((time - current) / 10);
 		if (!check_death(data, 1))
 			return ;
 	}
