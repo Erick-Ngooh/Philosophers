@@ -6,7 +6,7 @@
 /*   By: christellenkouka <christellenkouka@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/10 14:17:07 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 15:45:59 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/17 09:05:27 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct s_philo
 	struct s_data	*data;
 	struct s_philo	*next;
 	pthread_mutex_t	fork;	
+	pthread_mutex_t	mutex_ect;
+	pthread_mutex_t	check_meal;
+	pthread_mutex_t	mutex_genese;
 	int				idx;
 	int				ect;
 	int				nbp_s;

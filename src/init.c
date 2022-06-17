@@ -6,10 +6,29 @@
 /*   By: christellenkouka <christellenkouka@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 18:45:47 by christellen       #+#    #+#             */
-/*   Updated: 2022/06/13 23:04:27 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/17 10:26:51 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
+
+int	set_data_philo(t_data *data, int i)
+{
+	while (++i < data->nbp_std)
+	{
+		data->philo[i].idx = i;
+		data->philo[i].tte = 0;
+		data->philo[i].genese = 0;
+		data->philo[i].data = data;
+		if (data->ect_if)
+			data->philo[i].ect = data->ect_std;
+		data->philo[i].tte_s = data->tte_std;
+		data->philo[i].tts_s = data->tts_std;
+		data->philo[i].nbp_s = data->nbp_std;
+	}
+	if (i == 1)
+		data->philo[0].ttd_s = data->ttd_std;
+	return (1);
+}
 
 int	set_data(t_data *data, char **av)
 {
@@ -41,19 +60,17 @@ int	create_mutex(t_data *data, int i)
 		return (0);
 	while (++i < data->nbp_std)
 	{
-		data->philo[i].idx = i;
-		data->philo[i].ect = 0;
-		data->philo[i].tte = 0;
-		data->philo[i].genese = 0;
-		data->philo[i].data = data;
-		data->philo[i].tte_s = data->tte_std;
-		data->philo[i].tts_s = data->tts_std;
-		data->philo[i].nbp_s = data->nbp_std;
 		if (i == data->nbp_std - 1)
 			data->philo[i].next = &data->philo[0];
 		else
 			data->philo[i].next = &data->philo[i + 1];
 		if (pthread_mutex_init(&data->philo[i].fork, NULL) < 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo[i].check_meal, NULL) < 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo[i].mutex_genese, NULL) < 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo[i].mutex_ect, NULL) < 0)
 			return (0);
 	}	
 	if (i == 1)
@@ -64,11 +81,9 @@ int	create_mutex(t_data *data, int i)
 int	create_thread(t_data *data, int i)
 {
 	while (++i < data->nbp_std)
-	{
 		if (pthread_create(&data->philo[i].thrid, NULL,
 				routine, &data->philo[i]) < 0)
 			return (0);
-	}
 	return (1);
 }
 
@@ -82,7 +97,8 @@ int	init_philo(t_data *data, int ac, char **av)
 	if (!philo)
 		return (0);
 	data->philo = philo;
-	if (!create_mutex(data, -1) || !create_thread(data, -1))
+	if (!set_data_philo(data, -1) || !create_mutex(data, -1)
+		|| !create_thread(data, -1))
 		return (0);
 	return (1);
 }

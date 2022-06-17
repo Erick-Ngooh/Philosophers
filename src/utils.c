@@ -6,7 +6,7 @@
 /*   By: engooh <engooh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 15:08:40 by engooh            #+#    #+#             */
-/*   Updated: 2022/06/09 17:57:46 by engooh           ###   ########.fr       */
+/*   Updated: 2022/06/17 09:20:31 by engooh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/philo.h"
@@ -50,13 +50,15 @@ int	print_philo(t_data *data, t_philo *philo, char *str, int size)
 		pthread_mutex_unlock(&data->print);
 		return (0);
 	}
-	write(1, "[", 1);
+	write(1, "{", 1);
+	pthread_mutex_lock(&philo->mutex_genese);
 	ft_putnbr_fd(timestamp() - philo->genese, 1);
-	write(1, "]", 1);
+	pthread_mutex_unlock(&philo->mutex_genese);
+	write(1, "}", 1);
 	write(1, " ", 1);
-	write(1, "[", 1);
+	write(1, "{", 1);
 	ft_putnbr_fd(philo->idx + 1, 1);
-	write(1, "]", 1);
+	write(1, "}", 1);
 	write(1, " ", 1);
 	write(1, str, size);
 	pthread_mutex_unlock(&data->print);
